@@ -1,0 +1,120 @@
+.container {
+    flex-direction: column;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    width: 500px;
+    height: 100%;
+  }
+  
+  .h3 {
+    font-family: var(--font-tajawal-medium);
+    font-size: large;
+    margin: 0px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+  }
+  
+  .input {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    direction: ltr;
+    text-align: left;
+  }
+  
+  .input::placeholder {
+    opacity: 0.5;
+  }
+  
+  .error {
+    color: red;
+    margin: 0px;
+    text-align: center;
+  }
+  
+  .imagePreview {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    padding: 10px;
+  
+  }
+  
+  
+  .button {
+    width: 50%;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 50px;
+    font-size: medium;
+  }
+  
+  .button:hover {
+    background-color: #555;
+  }
+  
+  /* @media (max-width: 499px) {
+    .container {
+      font-size: larger;
+      width: 90%;
+    }
+  } */
+  
+  
+  /* //////// */
+  
+  
+  /* main */
+  .main {
+    margin: 100px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .searchForm {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #eff2f5;
+  }
+  
+  .searchInput {
+    direction: rtl;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f5f8fa;
+    border-color: #f5f8fa;
+    color: #5e6278;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .searchInput::placeholder {
+    opacity: 0.5;
+  }
+  
+  .searchInput:focus {
+    outline: none;
+    background-color: #eff2f4;
+  }
+  

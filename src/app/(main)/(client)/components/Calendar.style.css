@@ -1,0 +1,39 @@
+.calendar {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.theDate {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  width: 90%;
+  height: 51px;
+  text-align: center;
+  background-color: var(--primary--color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: auto;
+  font-size: medium;
+}
+
+.calendarIcon {
+  filter: brightness(0) invert(1);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+}
+
+.calendarContainer {
+  margin-top: 20px;
+  text-align: center;
+  direction: rtl;
+}

@@ -1,0 +1,32 @@
+:root {
+  --background-color: #f5f8fa;
+  --primary--color: #333;
+  --secondary--color: #555;
+  --card-color: #fff;
+  --box-shadow: 0 0.25rem 0.75rem #0000000d;
+  --green: #41b3a2;
+  --blue: #4379f2;
+  --red: #ff6b6b;
+  --gray : #eef3f7;
+}
+* {
+  text-align: right;
+  font-size: medium;
+  font-family: var(--font-tajawal-regular);
+  box-sizing: border-box;
+}
+body {
+  /* padding: 20px; */
+  margin: 0;
+  background-color: #f5f8fa;
+  height: 100vh;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+
+}

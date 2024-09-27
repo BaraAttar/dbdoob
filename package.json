@@ -1,0 +1,27 @@
+{
+  "name": "dbdoob",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.0.2",
+    "@mui/x-date-pickers": "^7.16.0",
+    "axios": "^1.7.7",
+    "cookies-next": "^4.2.1",
+    "dayjs": "^1.11.13",
+    "hijri-date": "^0.2.2",
+    "next": "^14.2.12",
+    "npm": "^10.8.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-multi-date-picker": "^4.5.2",
+    "zustand": "^5.0.0-rc.2"
+  }
+}

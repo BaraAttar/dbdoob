@@ -1,0 +1,73 @@
+.productsComponent {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.productsComponent > h1 {
+  font-family: var(--font-tajawal-medium);
+}
+
+.productsList {
+  max-width: 600px;
+  width: 100%;
+  /* display: flex;
+  align-items: center;
+  flex-direction: column; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 100px;
+}
+
+.productCard {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--card-color);
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
+  border-radius: 20px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  padding: 15px;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.cardDetails {
+  margin-top: 10px;
+  direction: rtl;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (min-width: 300px) {
+  .cardDetails > div > p {
+    max-width: 240px;
+  }
+}
+
+@media (min-width: 710px) {
+  .cardDetails > div > p {
+    max-width: 150px;
+    font-size: small;
+  }
+}
+
+.addToCart {
+  filter: brightness(1) invert(0);
+ 
+}

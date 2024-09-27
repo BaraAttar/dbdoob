@@ -1,0 +1,35 @@
+.orders {
+  width: 100%;
+}
+.orders > p {
+padding-right: 20px;
+margin: 0;
+}
+
+.orders > ul > li> h1 {
+text-align: center;}
+
+.CategoriesContainer {
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.Category {
+  list-style: none;
+  border-radius: 15px;
+  color: white;
+  padding: 10px;
+  aspect-ratio: 1;
+}
+.Category > p {
+    font-size: large;
+    margin: 10px;
+}
+
+.Category > h1 {
+    font-size: 40px;
+}

@@ -1,0 +1,70 @@
+/* components/Modal.module.css */
+.FormOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.FormContent {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  max-width: 500px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around
+}
+
+.input {
+  padding: 20px;
+  margin-bottom: 10px;
+  border: 1px solid var(--primary--color);
+  border-radius: 10px;
+  direction: rtl;
+  text-align: center;
+  font-size: 15px;
+}
+.input::placeholder {
+    opacity: 0.5;
+  }
+
+.closeButton {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: none;
+  cursor: pointer;
+}
+
+.deletCategoryBtn {
+  width: 100%;
+  background-color: var(--red);
+  color: white;
+  padding: 20px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.submitButton {
+  width: 100%;
+  background-color: var(--primary--color);
+  color: white;
+  padding: 20px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
