@@ -16,7 +16,7 @@ export default function Dashboard() {
       <OrdersCategorys />
       <div className={styles.links}>
         <Link href="">حسابات العملاء</Link>
-        <Link href="/admin/productsCategories">تصنيفات المنتجات</Link>
+        <Link href="/admin/categories">تصنيفات المنتجات</Link>
         <Link href={`/admin/products/${"all"}`}>المنتجات</Link>
       </div>
     </div>

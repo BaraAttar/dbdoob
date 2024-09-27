@@ -11,23 +11,21 @@ export default function Login() {
   const [password, setPassword] = useState("12345678");
   const { status, fetchUserData } = useUserStore();
 
-  function onSubmit(e) {
+  function submit(e) {
     e.preventDefault();
     fetchUserData(userName, password);
   }
 
   useEffect(() => {
-    console.log("Status:", status);  // Debugging
     if (status == "fulfilled") {
       router.push("/home");
       router.refresh();
-
     }
   }, [status, router]);
 
   return (
     <>
-      <form className={styles.form} onSubmit={onSubmit}>
+      <form className={styles.form}>
         <h3 className={styles.h3}>مرحباً بعودتك</h3>
         <label className={styles.label} htmlFor="email">
           اسم المستخدم
@@ -61,6 +59,7 @@ export default function Login() {
           <button
             type="submit"
             className={styles.submitButton}
+            onClick={submit}
           >
             تسجيل الدخول
           </button>

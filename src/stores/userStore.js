@@ -6,8 +6,9 @@ export const useUserStore = create((set) => ({
   user: null,
   status: "idle", // 'idle', 'pending', 'fulfilled', 'rejected'
   error: null,
-  setUser: (newUser) => set({ user: newUser }),
-  clearUser: () => set({ user: null }),
+  // setUser: (newUser) => set({ user: newUser }),
+  // clearUser: () => set({ user: null }),
+
 
   fetchUserData: async (userName, password) => {
     set({ status: "pending", error: null });
@@ -74,7 +75,7 @@ export const useUserStore = create((set) => ({
         status: "rejected",
         user: null,
       });
-      // setCookie("token", "", { maxAge: -1 }); // Clear invalid token
+      setCookie("token", "", { maxAge: -1 }); // Clear invalid token
     }
   },
 

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export function middleware(req) {
   const token = req.cookies.get("token");
   
-  console.log("Token:", token); // Debugging: للتأكد من استلام الكوكي
+  // console.log("Token:", token); // Debugging
 
   // Check if the request is for the login page
   const isLoginPage = req.nextUrl.pathname === "/login";

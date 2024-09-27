@@ -4,18 +4,19 @@ import styles from "./page.module.css";
 
 // icon
 import profile from "@/assets/profile.svg";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useUserStore } from "@/stores/userStore";
 
 export default function page() {
-  const { user , restoreUser } = useUserStore();
+  const { user, restoreUser } = useUserStore();
 
-  const [firstName , setFirstName] = useState('')
- 
+  const [firstName, setFirstName] = useState("");
+
   useEffect(() => {
+    const storedUser = sessionStorage.getItem("user");
     if (!user) {
-      console.log(user)
-      console.log("restoreUser")
+      console.log(user);
+      console.log("restoreUser");
       restoreUser();
     } else {
       setFirstName(user.firstName);

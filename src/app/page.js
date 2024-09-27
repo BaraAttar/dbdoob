@@ -11,6 +11,7 @@ export default function Home() {
   },[])
   return (
     <main className={styles.main}>
+      Bara 4
     </main>
   );
 }
