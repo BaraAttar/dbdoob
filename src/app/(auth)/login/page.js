@@ -4,12 +4,11 @@ import styles from "./page.module.css";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "next/navigation";
 
-
 export default function Login() {
   const router = useRouter();
   const [userName, setUserName] = useState("admin");
   const [password, setPassword] = useState("12345678");
-  const { status, fetchUserData } = useUserStore();
+  const { status, fetchUserData, error } = useUserStore();
 
   function submit(e) {
     e.preventDefault();
@@ -17,6 +16,7 @@ export default function Login() {
   }
 
   useEffect(() => {
+    console.log(error);
     if (status == "fulfilled") {
       router.push("/home");
       router.refresh();
