@@ -27,11 +27,18 @@
   font-family: var(--font-tajawal-medium) !important;
 }
 
+.fullname_field {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 .label {
   margin: 5px;
   font-weight: bold;
 }
 .input {
+    width: 100%;
   padding: 15px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -62,7 +69,7 @@
 }
 
 .loader {
-  display:block;
+  display: block;
   position: absolute;
   border: 2px solid rgb(255, 255, 255);
   border-top: 2px solid transparent;
@@ -80,11 +87,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-.link {
-text-decoration: none;
-color: #333;
-margin: 10px 5px;
-font-size: large;
 }

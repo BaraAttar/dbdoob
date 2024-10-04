@@ -4,27 +4,36 @@ import styles from "./page.module.css";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "next/navigation";
 
+import { Toaster, toast } from "sonner";
+import Link from "next/link";
+
 export default function Login() {
   const router = useRouter();
   const [userName, setUserName] = useState("admin");
   const [password, setPassword] = useState("12345678");
-  const { status, fetchUserData, error } = useUserStore();
+  const { status, login, error } = useUserStore();
 
   function submit(e) {
     e.preventDefault();
-    fetchUserData(userName, password);
+    login(userName, password);
   }
 
   useEffect(() => {
-    console.log(error);
+    if (error) {
+      toast.error(error, { position: "top-center" });
+    }
     if (status == "fulfilled") {
       router.push("/home");
       router.refresh();
     }
+    return () => {
+      toast.dismiss();
+    };
   }, [status, router]);
 
   return (
     <>
+      <Toaster />
       <form className={styles.form}>
         <h3 className={styles.h3}>مرحباً بعودتك</h3>
         <label className={styles.label} htmlFor="email">
@@ -64,7 +73,7 @@ export default function Login() {
             تسجيل الدخول
           </button>
         </div>
-        <p>انشاء حساب</p>
+        <Link className={styles.link} href="/signup">Create a new account</Link>
       </form>
     </>
   );

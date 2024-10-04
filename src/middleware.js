@@ -6,7 +6,7 @@ export function middleware(req) {
   // console.log("Token:", token); // Debugging
 
   // Check if the request is for the login page
-  const isLoginPage = req.nextUrl.pathname === "/login";
+  const isLoginPage = req.nextUrl.pathname === "/login" || req.nextUrl.pathname === "/signup";
 
   // Check if the request is for a protected route
   const isProtectedRoute = [
@@ -39,5 +39,6 @@ export const config = {
     "/cart/:path*",
     "/profile/:path*",
     "/login",
+    "/signup",
   ],
 };

@@ -10,7 +10,7 @@
   --gray : #eef3f7;
 }
 * {
-  text-align: right;
+  /* text-align: right; */
   font-size: medium;
   font-family: var(--font-tajawal-regular);
   box-sizing: border-box;
