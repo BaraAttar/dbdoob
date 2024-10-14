@@ -6,8 +6,8 @@ export const useUserStore = create((set) => ({
   user: null,
   status: "idle", // 'idle', 'pending', 'fulfilled', 'rejected'
   error: null,
-  // setUser: (newUser) => set({ user: newUser }),
-  // clearUser: () => set({ user: null }),
+
+
 
   login: async (userName, password) => {
     set({ status: "pending", error: null });
@@ -28,6 +28,8 @@ export const useUserStore = create((set) => ({
         user: response.data.userInfo,
         status: "fulfilled",
       });
+
+      sessionStorage.setItem("user", JSON.stringify(response.data.userInfo));
 
       const { token } = response.data;
       setCookie("token", token, { maxAge: 60 * 60 * 24 });
@@ -68,6 +70,8 @@ export const useUserStore = create((set) => ({
         user: response.data,
         status: "fulfilled",
       });
+      sessionStorage.setItem("user", JSON.stringify(response.data));
+
     } catch (error) {
       set({
         error: error.response?.data?.message || "Failed to restore session",
@@ -111,10 +115,9 @@ export const useUserStore = create((set) => ({
       });
 
       console.log(response.data)
-
+      sessionStorage.setItem("user", JSON.stringify(response.data.user));
       const { token } = response.data;
       setCookie("token", token, { maxAge: 60 * 60 * 24 });
-
       return response.data;
     } catch (error) {
       console.error(
