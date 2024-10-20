@@ -1,5 +1,5 @@
 .productCardsContainer {
-  padding:0 50px;
+  padding: 0 50px;
   padding-bottom: 10px;
   /* padding: 10px;
   overflow: scroll; */
@@ -19,7 +19,7 @@
 }
 
 .tableContainer {
-  overflow-x: auto;
+  /* overflow-x: auto; */
   /* width: 100%;
   height: 75vh; */
 }
@@ -30,14 +30,14 @@
 }
 
 .thead {
+  z-index: 100;
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   border-bottom: 1px solid #ddd;
 }
 
-.th,
-.td {
+.th {
   background-color: var(--card-color);
   font-size: medium;
   padding: 12px;
@@ -45,14 +45,21 @@
   border: none;
   border-bottom: 1px solid #ddd;
   overflow: scroll;
+  max-width: 230px;
 }
 
-
-.td:first-child {
-  max-width: 300px;
-  font-weight: bold; 
+@media screen and (max-width: 1070px) {
+  .th {
+    max-width: 100px;
+  }
 }
 
+@media screen and (max-width: 940px) {
+  .th {
+    max-width: 50px;
+  }
+ 
+}
 
 
 .tr {
@@ -64,8 +71,3 @@
   white-space: nowrap;
 }
 
-/* .td {
-} */
-.td > p {
-  margin: 0;
-}

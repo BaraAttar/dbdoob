@@ -1,0 +1,40 @@
+.dropdown {
+    position: relative;
+    /* display: inline-block; */
+  }
+  
+  .dropdownBtn {
+    /* padding: 10px 20px; */
+    background-color: transparent;
+    /* background-color: #41b3a2; يمكنك استخدام المتغير الأخضر الذي تستخدمه */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .transparent {
+    filter: brightness(0) saturate(100%) invert(60%) sepia(8%) saturate(19%) hue-rotate(316deg) brightness(93%) contrast(93%);  }
+  
+  .dropdownMenu {
+    top: 0;
+    right: 50px;
+    position: absolute;
+    background-color: var(--card-color);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 5px;
+    list-style: none;
+    width: 120px;
+  }
+  
+  .dropdownItem {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #f1f1f1;
+    border-radius: 7px;
+  }
+  

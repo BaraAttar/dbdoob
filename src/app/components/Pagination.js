@@ -1,17 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import arrowIcon from "@/assets/arrowIcon.svg";
 
 import "./style/Pagination.style.css";
 import Image from "next/image";
 
-export default function Pagination() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 40;
+import { useProductsStore } from "@/stores/useProducts";
+
+
+export default function Pagination({pagination , onPageChange}) {
+  const { products, fetchProducts } = useProductsStore();
+
+  // console.log("Pagination render")
+  const [currentPage, setCurrentPage] = useState(pagination.currentPage);
+  const totalPages = pagination.totalPages;
   const maxVisiblePages = 5;
+
+
+  // useEffect(()=>{
+  //   console.log("currentPage:" ,currentPage)
+  //   console.log("limit:" ,pagination.limit)
+  //   console.log("totalPages:" ,pagination.totalPages)
+  //   console.log("totalProducts:" ,pagination.totalProducts)
+  //   console.log("*".repeat(15))
+  // },[currentPage])
 
   const handlePageChange = (pageNumber) => {
     if (pageNumber < 1 || pageNumber > totalPages) return;
-    setCurrentPage(pageNumber);
+    onPageChange(pageNumber);
+    setCurrentPage(pageNumber)
     // Logic to fetch or display data for the selected page can go here
   };
 
@@ -26,6 +42,7 @@ export default function Pagination() {
       } else if (end === totalPages) {
         start = Math.max(1, start - (maxVisiblePages - (end - start + 1)));
       }
+
     }
 
     // Add the first two pages and last two pages if necessary

@@ -1,0 +1,49 @@
+.td {
+  background-color: var(--card-color);
+  font-size: medium;
+  padding: 12px;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  overflow: scroll;
+  max-width: 230px;
+}
+
+@media screen and (max-width: 1070px) {
+  .td {
+    max-width: 100px;
+    /* word-break: break-all; */
+  }
+  .td:nth-child(2) {
+    overflow: scroll;
+  }
+}
+
+@media screen and (max-width: 940px) {
+
+  .td {
+    max-width: 50px;
+    /* word-break: break-all; */
+  }
+  .td:nth-child(2) {
+    overflow: scroll;
+  }
+}
+
+.td:first-child {
+  min-width: 50px;
+  font-weight: bold;
+}
+
+.td:last-child {
+  width: 20px;
+  text-align: center;
+  overflow: visible;
+}
+
+.tr {
+  height: 50px;
+}
+.td > p {
+  margin: 0;
+}
