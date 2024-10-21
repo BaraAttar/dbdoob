@@ -1,21 +1,19 @@
 "use client";
-import Link from "next/link";
 import styles from "./page.module.css";
 import Image from "next/image";
 
 import add from "@/assets/add-square.svg";
-import edit from "@/assets/edit.svg";
 import EditCategoryForm from "../../adminComponents/EditCategoryForm";
 import { useEffect, useState } from "react";
 import { useCategoriesStore } from "@/stores/useCategoriesStore";
-import { useRouter } from "next/navigation";
+import CategoriesList from "../../adminComponents/CategoriesList";
 
 export default function page() {
   const [isEditOpen, setEditOpen] = useState(false);
   const [editingCategoryInfo, seteditingCategoryInfo] = useState("");
   const { status, fetchCategories, error } = useCategoriesStore();
 
-  const [categories, setCategories] = useState();
+  const [categoriesList, setCategories] = useState();
 
   useEffect(() => {
     const savedCategories = sessionStorage.getItem("categories");
@@ -59,8 +57,9 @@ export default function page() {
       ) : error ? (
         <div>{error}</div>
       ) : (
-        <Categories categories={categories} openEdit={openEdit} />
+        <CategoriesList categoriesList={categoriesList} openEdit={openEdit} />
       )}
+      {/* TODO */}
       <EditCategoryForm
         info={editingCategoryInfo}
         isOpen={isEditOpen}
@@ -70,45 +69,7 @@ export default function page() {
   );
 }
 
-function Categories({ categories, openEdit }) {
-  const router = useRouter()
-  console.log(categories);
-  function openCategory(id) {
-    console.log(id);
-    router.push(`/admin/dashboard/products/${id}`)
-  }
-  return (
-    <div className={styles.tableContainer}>
-      <table className={styles.table}>
-        <thead className={styles.thead}>
-          <tr>
-            <th className={styles.th}>Name</th>
-            <th className={styles.th}>Products</th>
-            <th className={styles.th}>Status</th>
-            <th className={styles.th}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories?.map((category) => (
-            <tr key={category._id}>
-              <td
-                onClick={() => openCategory(category.name)}
-                className={styles.td}
-              >
-                {category.name}
-              </td>
-              <td className={styles.td}>{category.products}</td>
-              <td className={styles.td}>
-                <p className={styles.active}>{category.status}</p>
-              </td>
-              <td className={styles.td}>...</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
+
 
 // const categoriesList = [
 //   { id: "1221", name: "apple", products: 35, status: "active" },

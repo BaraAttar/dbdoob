@@ -1,0 +1,49 @@
+
+.tableContainer {
+    background-color: var(--card-color);
+    margin: auto;
+    overflow-x: auto;
+    width: 600px;
+    height: 600px;
+    border-radius: 15px;
+   
+  }
+  
+  .table {
+    width: 100%;
+  }
+  
+  .thead {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .th {
+    background-color: var(--card-color);
+    font-size: medium;
+    padding: 12px;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    /* overflow: scroll; */
+  }
+  
+  .tr {
+    height: 50px;
+  }
+  
+  .th {
+    font-family: var(--font-tajawal-medium);
+    white-space: nowrap;
+  }
+  
+  .active {
+    color: var(--green);
+    padding: 5px;
+    margin: 0 auto;
+    width: 100px;
+    border-radius: 50px;
+    background-color: rgba(var(--green-rgb) , 0.5);
+  }

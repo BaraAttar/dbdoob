@@ -33,7 +33,7 @@ export default function ProductRow({ product }) {
       <td className={styles.td}>{product.status}</td>
       <td className={styles.td}>
         <DropdownButton
-          productId={product._id}
+          id={product._id}
           isOpen={isDropdownOpen}
           toggleDropdown={toggleDropdown}
         />
