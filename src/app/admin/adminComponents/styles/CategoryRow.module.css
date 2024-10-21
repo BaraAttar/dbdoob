@@ -1,36 +1,32 @@
-  
-  .th,
-  .td {
-    background-color: var(--card-color);
-    font-size: medium;
-    padding: 12px;
-    text-align: left;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    /* overflow: scroll; */
-  }
-  
-  .td:first-child {
-    max-width: 300px;
-    font-weight: bold; 
-  }
+.td {
+  background-color: var(--card-color);
+  font-size: medium;
+  padding: 12px;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
 
-  .td:last-child {
-    width: 20px;
-    text-align: center;
-    overflow: visible;
-  }
-  
-  .tr {
-    height: 50px;
-  }
- 
-  
-  .active {
-    color: var(--green);
-    padding: 5px;
-    margin: 0 auto;
-    width: 100px;
-    border-radius: 50px;
-    background-color: rgba(var(--green-rgb) , 0.5);
-  }
+.td:first-child {
+  max-width: 300px;
+  font-weight: bold;
+}
+
+.td:last-child {
+  width: 20px;
+  text-align: center;
+  overflow: visible;
+}
+
+.tr {
+  height: 50px;
+}
+
+.active {
+  color: var(--green);
+  padding: 5px;
+  margin: 0 auto;
+  width: 100px;
+  border-radius: 50px;
+  background-color: rgba(var(--green-rgb), 0.5);
+}

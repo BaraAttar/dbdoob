@@ -3,9 +3,8 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 import styles from "./page.module.css";
-import SortCard from "../../adminComponents/SortCard";
-import Pagination from "@/app/(main)/components/Pagination";
-// import Image from "next/image";
+import SortCard from "@/app/admin/adminComponents/SortCard";
+import Pagination from "@/app/components/Pagination";
 
 export default function page() {
   const params = useParams();

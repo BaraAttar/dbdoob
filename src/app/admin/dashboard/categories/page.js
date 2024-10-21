@@ -9,8 +9,8 @@ import { useCategoriesStore } from "@/stores/useCategoriesStore";
 import CategoriesList from "../../adminComponents/CategoriesList";
 
 export default function page() {
-  const [isEditOpen, setEditOpen] = useState(false);
-  const [editingCategoryInfo, seteditingCategoryInfo] = useState("");
+  // const [isEditOpen, setEditOpen] = useState(false);
+  // const [editingCategoryInfo, seteditingCategoryInfo] = useState("");
   const { status, fetchCategories, error } = useCategoriesStore();
 
   const [categoriesList, setCategories] = useState();
@@ -24,16 +24,16 @@ export default function page() {
     }
   }, [status, fetchCategories]);
 
-  const openEdit = (info) => {
-    setEditOpen(true);
-    seteditingCategoryInfo(info);
-    console.log(info);
-  };
+  // const openEdit = (info) => {
+  //   setEditOpen(true);
+  //   seteditingCategoryInfo(info);
+  //   console.log(info);
+  // };
 
-  const closeEdit = () => {
-    setEditOpen(false);
-    seteditingCategoryInfo("");
-  };
+  // const closeEdit = () => {
+  //   setEditOpen(false);
+  //   seteditingCategoryInfo("");
+  // };
 
   function addNewCategory() {
     console.log("addNewCategory");
@@ -57,14 +57,14 @@ export default function page() {
       ) : error ? (
         <div>{error}</div>
       ) : (
-        <CategoriesList categoriesList={categoriesList} openEdit={openEdit} />
+        <CategoriesList categoriesList={categoriesList} />
       )}
       {/* TODO */}
-      <EditCategoryForm
+      {/* <EditCategoryForm
         info={editingCategoryInfo}
         isOpen={isEditOpen}
         onClose={closeEdit}
-      />
+      /> */}
     </div>
   );
 }

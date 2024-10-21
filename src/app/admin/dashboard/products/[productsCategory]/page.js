@@ -12,7 +12,7 @@ import ProductsList from "@/app/admin/adminComponents/ProductsList";
 export default function page() {
   const params = useParams();
   const category = params.productsCategory;
-  const { products, status, fetchProducts } = useProductsStore();
+  const { products, status, error , fetchProducts } = useProductsStore();
 
   const [pageNumber, setPageNumber] = useState(1); // current Page
 
@@ -50,7 +50,7 @@ export default function page() {
                 <th className={styles.th}>Action</th>
               </tr>
             </thead>
-            <ProductsList productsList={productsList} status={status} />
+            <ProductsList productsList={productsList} status={status} error={error} />
           </table>
         </div>
         {pagination && (
