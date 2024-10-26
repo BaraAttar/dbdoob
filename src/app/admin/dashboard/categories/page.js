@@ -62,6 +62,7 @@ export default function Page() {
       </div>
       
       <CategoriesList categoriesList={categories} error={error} />
+      
       {/* TODO */}
       <CategoryForm
         type={"add new"}

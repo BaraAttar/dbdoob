@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from "./styles/products.module.css"
+import styles from "./products.module.css"
 
 export default function Products() {
     const [currentPage, setCurrentPage] = useState(1);

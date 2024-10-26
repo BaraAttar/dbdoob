@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import styles from "./styles/CategoriesList.module.css";
 import CategoryRow from "./CategoryRow";
 import { Suspense } from "react";

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import styles from "./styles/ProductRow.module.css";
-import DropdownButton from "./DropdownButton";
+import styles from "./ProductRow.module.css";
+import DropdownButton from "../../../adminComponents/DropdownButton";
 
 export default function ProductRow({ product }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

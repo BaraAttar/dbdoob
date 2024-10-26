@@ -1,5 +1,5 @@
-import SortInput from "./SortInput";
-import styles from "./styles/SortCard.module.css";
+import SortInput from "../../../adminComponents/SortInput";
+import styles from "./SortCard.module.css";
 
 const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
 

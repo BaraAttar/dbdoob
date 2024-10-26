@@ -2,12 +2,12 @@
 import { useParams } from "next/navigation";
 import styles from "./page.module.css";
 import Pagination from "@/app/components/Pagination";
-import SortCard from "../../../adminComponents/SortCard";
+import SortCard from "../components/SortCard";
 
 // Icon
 import { useEffect, useMemo, useState } from "react";
 import { useProductsStore } from "@/stores/useProducts";
-import ProductsList from "@/app/admin/adminComponents/ProductsList";
+import ProductsList from "@/app/admin/dashboard/products/components/ProductsList";
 
 export default function page() {
   const params = useParams();

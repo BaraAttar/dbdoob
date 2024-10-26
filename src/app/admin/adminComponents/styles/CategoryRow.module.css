@@ -7,6 +7,10 @@
   border-bottom: 1px solid #ddd;
 }
 
+.td:first-child {
+  cursor: pointer;
+}
+
 .tr {
   height: 50px;
 }

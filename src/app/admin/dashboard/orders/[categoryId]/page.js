@@ -3,7 +3,7 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 import styles from "./page.module.css";
-import SortCard from "@/app/admin/adminComponents/SortCard";
+import SortCard from "@/app/admin/dashboard/products/components/SortCard";
 import Pagination from "@/app/components/Pagination";
 
 export default function page() {

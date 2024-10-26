@@ -1,5 +1,5 @@
 import ProductRow from "./ProductRow";
-import styles from "./styles/ProductsList.module.css";
+import styles from "./ProductsList.module.css";
 
 export default function ProductsList({ productsList, status, error }) {
   if (status === "pending") {
