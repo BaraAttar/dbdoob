@@ -11,18 +11,22 @@ import { useEffect, useState } from "react";
 
 // this component imported in main 'page/js'
 export default function Categories() {
-  const { status, fetchCategories, error } = useCategoriesStore();
+  const { categories, status, fetchCategories, error } = useCategoriesStore();
 
-  const [categories , setCategories] =  useState()
+  // const [categories , setCategories] =  useState()
 
   useEffect(() => {
-    const savedCategories = sessionStorage.getItem('categories');
-    if (savedCategories) {
-      setCategories(JSON.parse(savedCategories));
-    } else {
+    // const savedCategories = sessionStorage.getItem('categories');
+    // if (savedCategories) {
+    //   setCategories(JSON.parse(savedCategories));
+    // } else {
+    //   fetchCategories();
+    // }
+
+    if (!categories) {
       fetchCategories();
     }
-  }, [status, fetchCategories]);
+  }, [fetchCategories]);
 
   return (
     <div className={styles.categories}>

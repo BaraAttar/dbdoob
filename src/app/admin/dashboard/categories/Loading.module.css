@@ -1,0 +1,36 @@
+.td {
+  background-color: var(--card-color);
+  font-size: medium;
+  padding: 12px;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.td::before {
+  content: "";
+  color: var(--green);
+  margin: 0 auto;
+  width: 90%;
+  height: 15px;
+  border-radius: 50px;
+  display: inline-block;
+  background: linear-gradient(45deg, #474747, #afafaf);
+  background-size: 200% 100%; /* ضبط حجم الخلفية */
+  animation: gradientAnimation 2s ease infinite;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 100% 0; /* البداية من اليمين */
+      }
+      50% {
+        background-position: 0 0; /* الوصول إلى اليسار (يختفي) */
+      }
+      100% {
+        background-position: 100% 0; /* العودة إلى اليمين مجددًا */
+      }
+  }
+
+.tr {
+  height: 54px;
+}

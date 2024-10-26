@@ -7,26 +7,26 @@
   border-bottom: 1px solid #ddd;
 }
 
-.td:first-child {
-  max-width: 300px;
-  font-weight: bold;
-}
-
-.td:last-child {
-  width: 20px;
-  text-align: center;
-  overflow: visible;
-}
-
 .tr {
   height: 50px;
 }
 
 .active {
   color: var(--green);
-  padding: 5px;
+  padding: 4px;
+  padding-top: 5px;
   margin: 0 auto;
   width: 100px;
   border-radius: 50px;
   background-color: rgba(var(--green-rgb), 0.5);
+}
+
+.Inactive {
+  color: var(--red);
+  padding: 4px;
+  padding-top: 5px;
+    margin: 0 auto;
+  width: 100px;
+  border-radius: 50px;
+  background-color: rgba(var(--red-rgb), 0.3);
 }

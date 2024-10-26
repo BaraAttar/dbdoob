@@ -40,6 +40,7 @@ export default function Products({ categoryId }) {
               src="https://i.pinimg.com/736x/60/4b/7c/604b7c5e0854ca82a80a95e49deda0f3.jpg"
               width={150}
               height={150}
+              priority
               alt={`Card image ${i + 1}`}
               onClick={() => openModal('https://i.pinimg.com/736x/60/4b/7c/604b7c5e0854ca82a80a95e49deda0f3.jpg', `Card image ${i + 1}`)}
             />

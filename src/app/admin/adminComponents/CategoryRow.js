@@ -38,7 +38,10 @@ export default function CategoryRow({ category }) {
           </td>
           <td className={styles.td}>{category.products}</td>
           <td className={styles.td}>
-            <p className={styles.active}>{category.status}</p>
+            <p className={ 
+              category.status === "Active" ? styles.active : "" ||
+              category.status === "Inactive" ? styles.Inactive : ""
+             }>{category.status}</p>
           </td>
           <td className={styles.td}>
             <DropdownButton

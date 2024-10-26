@@ -7,8 +7,6 @@ export const useUserStore = create((set) => ({
   status: "idle", // 'idle', 'pending', 'fulfilled', 'rejected'
   error: null,
 
-
-
   login: async (userName, password) => {
     set({ status: "pending", error: null });
     const apiUrl = process.env.NEXT_PUBLIC_API_KEY;

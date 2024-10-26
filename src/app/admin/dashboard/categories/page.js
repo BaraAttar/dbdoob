@@ -3,41 +3,49 @@ import styles from "./page.module.css";
 import Image from "next/image";
 
 import add from "@/assets/add-square.svg";
-import EditCategoryForm from "../../adminComponents/EditCategoryForm";
+import CategoryForm from "../../adminComponents/CategoryForm";
 import { useEffect, useState } from "react";
 import { useCategoriesStore } from "@/stores/useCategoriesStore";
 import CategoriesList from "../../adminComponents/CategoriesList";
 
-export default function page() {
-  // const [isEditOpen, setEditOpen] = useState(false);
-  // const [editingCategoryInfo, seteditingCategoryInfo] = useState("");
-  const { status, fetchCategories, error } = useCategoriesStore();
-
-  const [categoriesList, setCategories] = useState();
+export default function Page() {
+  // Fetch data
+  const {
+    categories,
+    fetchCategories,
+    addStatus,
+    deleteStatus,
+    submitNewCategory,
+    error,
+  } = useCategoriesStore();
 
   useEffect(() => {
-    const savedCategories = sessionStorage.getItem("categories");
-    if (savedCategories) {
-      setCategories(JSON.parse(savedCategories));
-    } else {
+    if (categories === null) {
       fetchCategories();
     }
-  }, [status, fetchCategories]);
+  }, []);
 
-  // const openEdit = (info) => {
-  //   setEditOpen(true);
-  //   seteditingCategoryInfo(info);
-  //   console.log(info);
-  // };
+  // Category edit or add new Form
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
-  // const closeEdit = () => {
-  //   setEditOpen(false);
-  //   seteditingCategoryInfo("");
-  // };
+  const closeForm = () => {
+    setIsEditOpen(false);
+  };
 
   function addNewCategory() {
-    console.log("addNewCategory");
+    setIsEditOpen((prev) => !prev);
   }
+
+  function submitting({ categoryName, categoryStatus }) {
+    submitNewCategory({ categoryName, categoryStatus });
+  }
+
+  useEffect(() => {
+    if (addStatus === "fulfilled" || deleteStatus === "fulfilled") {
+      closeForm();
+      fetchCategories();
+    }
+  }, [addStatus , deleteStatus]);
 
   return (
     <div className={styles.productsCategories}>
@@ -48,28 +56,23 @@ export default function page() {
           width={30}
           height={30}
           alt="add"
-          onClick={() => addNewCategory()}
+          onClick={addNewCategory}
         />
         <h1>الاقسام</h1>
       </div>
-      {status === "pending" ? (
-        "Loading..."
-      ) : error ? (
-        <div>{error}</div>
-      ) : (
-        <CategoriesList categoriesList={categoriesList} />
-      )}
+      
+      <CategoriesList categoriesList={categories} error={error} />
       {/* TODO */}
-      {/* <EditCategoryForm
-        info={editingCategoryInfo}
+      <CategoryForm
+        type={"add new"}
         isOpen={isEditOpen}
-        onClose={closeEdit}
-      /> */}
+        closeForm={closeForm}
+        submitingInfo={submitting}
+        addStatus={addStatus}
+      />
     </div>
   );
 }
-
-
 
 // const categoriesList = [
 //   { id: "1221", name: "apple", products: 35, status: "active" },

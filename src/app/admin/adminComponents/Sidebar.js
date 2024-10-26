@@ -40,10 +40,10 @@ export default function Sidebar() {
 
   return (
     <div className={styles.sidebar}>
-      <di className={styles.logo}>
+      <div className={styles.logo}>
         <Image src={logo} priority={true} alt="logo" width={50} height={50} />
         <h1>Logo</h1>
-      </di>
+      </div>
       <ul>
         {linklist.map(({ key, href, alt, src }) => (
           <li

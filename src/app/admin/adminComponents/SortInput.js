@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./styles/Sort.module.css";
 import Image from "next/image";
 
@@ -15,37 +15,36 @@ export default function SortInput({ type, options, onOptionSelect }) {
   };
 
   const handleOptionClick = (option) => {
-    setInputValue(option );
+    setInputValue(option);
     setShowOptions(false);
-    onOptionSelect({option,type});
+    onOptionSelect(option);
   };
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = useCallback((event) => {
     if (containerRef.current && !containerRef.current.contains(event.target)) {
       setShowOptions(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   return (
     <div className={styles.textFieldContainer} ref={containerRef}>
       <input
         type="text"
         className={styles.textInput}
-        value={inputValue}
         onChange={handleInputChange}
         onFocus={() => setShowOptions(true)}
-        onBlur={() => setTimeout(() => setShowOptions(false), 100)}
-        placeholder="اختار"
+        placeholder={type}
+        value={inputValue}
       />
       <Image
-      alt="arrow"
+        alt="arrow"
         className={styles.arrowIcon}
         src={arrowIcon}
         width={20}
@@ -53,19 +52,15 @@ export default function SortInput({ type, options, onOptionSelect }) {
       />
       {showOptions && (
         <ul className={styles.optionsList}>
-          {options
-            .filter((option) =>
-              option.toLowerCase().includes(inputValue.toLowerCase())
-            )
-            .map((option, index) => (
-              <li
-                key={index}
-                className={styles.optionItem}
-                onClick={() => handleOptionClick(option)}
-              >
-                {option}
-              </li>
-            ))}
+          {options.map((option, index) => (
+            <li
+              key={index}
+              className={styles.optionItem}
+              onClick={() => handleOptionClick(option)}
+            >
+              {option}
+            </li>
+          ))}
         </ul>
       )}
     </div>

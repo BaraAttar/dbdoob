@@ -1,19 +1,6 @@
-import localFont from "next/font/local";
 import "@/app/globals.css";
 import Sidebar from "../adminComponents/Sidebar";
 import styles from "./page.module.css";
-
-const TajawalRegular = localFont({
-  src: "../../fonts/Tajawal/Tajawal-Regular.ttf",
-  variable: "--font-tajawal-regular",
-  weight: "400",
-});
-
-const TajawalMedium = localFont({
-  src: "../../fonts/Tajawal/Tajawal-Medium.ttf",
-  variable: "--font-tajawal-medium",
-  weight: "500",
-});
 
 export const metadata = {
   title: "Create Next App",
@@ -22,15 +9,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${TajawalRegular.variable} ${TajawalMedium.variable}`}>
-
-        <div className={styles.dashboardContainer}>
-          <Sidebar />
-          <div className={styles.content}>{children}</div>
-        </div>
-        
-      </body>
-    </html>
+    <div className={styles.dashboardContainer}>
+      <Sidebar />
+      <div className={styles.content}>{children}</div>
+    </div>
   );
 }

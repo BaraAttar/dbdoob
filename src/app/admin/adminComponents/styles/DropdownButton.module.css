@@ -10,12 +10,14 @@
     color: white;
     border: none;
     cursor: pointer;
+    z-index: 1;
   }
 
   .transparent {
     filter: brightness(0) saturate(100%) invert(60%) sepia(8%) saturate(19%) hue-rotate(316deg) brightness(93%) contrast(93%);  }
   
   .dropdownMenu {
+    z-index: 100;
     top: 0;
     right: 50px;
     position: absolute;
@@ -38,3 +40,23 @@
     border-radius: 7px;
   }
   
+  
+.loader {
+  border: 2px solid rgb(0, 0, 0);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.8s linear infinite;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
