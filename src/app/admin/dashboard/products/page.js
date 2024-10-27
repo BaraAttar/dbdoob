@@ -1,9 +1,9 @@
 import React from 'react'
-import Products from "./[productsCategory]/page"
+import AllProductsPage from "./[productsCategory]/page"
 export default function page() {
   return (
     <div>
-      <Products/>
+      <AllProductsPage/>
     </div>
   )
 }

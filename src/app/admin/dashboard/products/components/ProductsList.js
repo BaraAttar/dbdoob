@@ -1,23 +1,12 @@
 import ProductRow from "./ProductRow";
 import styles from "./ProductsList.module.css";
+import Loading from "../[productsCategory]/Loading";
 
-export default function ProductsList({ productsList, status, error }) {
+export default function ProductsList({ productsList, status }) {
   if (status === "pending") {
     return (
       <tbody>
-        <tr>
-          <td colSpan="7">Loading...</td>
-        </tr>
-      </tbody>
-    );
-  }
-
-  if (error) {
-    return (
-      <tbody>
-        <tr>
-          <td colSpan="7">{error}</td>
-        </tr>
+        <Loading />
       </tbody>
     );
   }
@@ -26,7 +15,9 @@ export default function ProductsList({ productsList, status, error }) {
     return (
       <tbody>
         <tr>
-          <td colSpan="7">No products available</td>
+          <td className={styles.noProductsMessage} colSpan="7">
+            No products available
+          </td>
         </tr>
       </tbody>
     );
@@ -39,5 +30,4 @@ export default function ProductsList({ productsList, status, error }) {
       ))}
     </tbody>
   );
-
 }

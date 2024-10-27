@@ -5,11 +5,11 @@ import { create } from "zustand";
 export const useCategoriesStore = create((set) => ({
   categories: null,
   status: "idle", // 'idle', 'pending', 'fulfilled', 'rejected'
-  addStatus: "idle", // 'idle', 'pending', 'fulfilled', 'rejected'
-  deleteStatus: "idle", // 'idle', 'pending', 'fulfilled', 'rejected'
-  deletingCatId: null,
+  addStatus: "idle",
+  deleteStatus: "idle",
+  deletingId: null,
   error: null,
-  deleteError: null,
+  response : null,
 
   fetchCategories: async () => {
     set({ status: "pending", error: null });
@@ -17,14 +17,12 @@ export const useCategoriesStore = create((set) => ({
 
     try {
       const response = await axios.get(`${apiUrl}/category`);
-      console.log(response.data);
 
       set({
         categories: response.data,
         status: "fulfilled",
       });
 
-      // sessionStorage.setItem("categories", JSON.stringify(response.data));
     } catch (error) {
       console.error(
         "Error fetching user data:",
@@ -49,7 +47,7 @@ export const useCategoriesStore = create((set) => ({
         `${apiUrl}/category`,
         {
           categoryName,
-          status : categoryStatus,
+          status: categoryStatus,
         },
         {
           headers: {
@@ -59,7 +57,7 @@ export const useCategoriesStore = create((set) => ({
       );
 
       console.log(response.data);
-      set({ addStatus: "fulfilled", error: null });
+      set({ response:"New Category Added Successfully", addStatus: "fulfilled", error: null });
     } catch (error) {
       console.error(
         "Error adding new category:",
@@ -73,10 +71,10 @@ export const useCategoriesStore = create((set) => ({
     }
   },
 
-  submitDeleteCategory: async (id) => {
+  deleteCategory: async (id) => {
     const token = getCookie("token");
 
-    set({ deletingCatId: id, deleteStatus: "pending", error: null });
+    set({ deletingId: id, deleteStatus: "pending", error: null });
     const apiUrl = process.env.NEXT_PUBLIC_API_KEY;
 
     try {
@@ -90,18 +88,29 @@ export const useCategoriesStore = create((set) => ({
       });
 
       console.log(response.data);
-      set({ eletingCatId: null, deleteStatus: "fulfilled", deleteError: null });
+      set({ response:"A Category Removed Successfully", deletingId: null, deleteStatus: "fulfilled", error: null });
     } catch (error) {
       console.error(
         "Error adding new category:",
         error.response?.data?.message || error.message
       );
       set({
-        deleteError: error.response?.data?.message || "Error deleting category",
+        error: error.response?.data?.message || "Error deleting category",
         deleteStatus: "rejected",
-        eletingCatId: null,
+        deletingId: null,
       });
       return null;
     }
+  },
+
+  cleaner: () => {
+    set({
+      status: "idle",
+      addStatus: "idle",
+      deleteStatus: "idle",
+      deletingId: null,
+      error: null,
+      response : null,
+    });
   },
 }));

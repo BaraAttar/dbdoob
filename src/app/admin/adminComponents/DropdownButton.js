@@ -1,8 +1,6 @@
 import styles from "./styles/DropdownButton.module.css";
 import Image from "next/image";
 
-import { useCategoriesStore } from "@/stores/useCategoriesStore";
-
 // icon
 import options from "@/assets/dashboard/options.svg";
 
@@ -10,16 +8,18 @@ export default function DropdownButton({
   id,
   toggleDropdown,
   isOpen,
+  deleteFromStore,
+  deleteStatus,
+  deletingId,
 }) {
-  const { submitDeleteCategory , deleteStatus , deletingCatId } = useCategoriesStore();
 
-  function deleteCategory() {
-    submitDeleteCategory(id);
+  function handleDeleteBtn() {
+    deleteFromStore(id);
   }
   return (
     <div className={styles.dropdown}>
       <button onClick={toggleDropdown} className={styles.dropdownBtn}>
-        {deleteStatus === "pending" && deletingCatId === id ? (
+        {deleteStatus === "pending" && deletingId === id ? (
           <p className={styles.loader}></p>
         ) : (
           <Image
@@ -34,7 +34,7 @@ export default function DropdownButton({
       {isOpen && (
         <ul className={styles.dropdownMenu}>
           <li className={styles.dropdownItem}>Edit</li>
-          <li onClick={deleteCategory} className={styles.dropdownItem}>
+          <li onClick={handleDeleteBtn} className={styles.dropdownItem}>
             Delet
           </li>
         </ul>

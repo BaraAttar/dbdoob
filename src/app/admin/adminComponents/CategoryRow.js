@@ -2,8 +2,11 @@ import { useRouter } from "next/navigation";
 import styles from "./styles/CategoryRow.module.css";
 import DropdownButton from "./DropdownButton";
 import { useEffect, useRef, useState } from "react";
+import { useCategoriesStore } from "@/stores/useCategoriesStore";
 
 export default function CategoryRow({ category }) {
+  const { deleteCategory, deleteStatus, deletingId } = useCategoriesStore();
+
   const router = useRouter();
 
   function openCategory(id) {
@@ -32,24 +35,34 @@ export default function CategoryRow({ category }) {
   }, []);
 
   return (
-        <tr key={category._id} ref={containerRef}>
-          <td onClick={() => openCategory(category.name)} className={styles.td}>
-            {category.name}
-          </td>
-          <td className={styles.td}>{category.products}</td>
-          <td className={styles.td}>
-            <p className={ 
-              category.status === "Active" ? styles.active : "" ||
-              category.status === "Inactive" ? styles.Inactive : ""
-             }>{category.status}</p>
-          </td>
-          <td className={styles.td}>
-            <DropdownButton
-              id={category._id}
-              isOpen={isDropdownOpen}
-              toggleDropdown={toggleDropdown}
-            />
-          </td>
-        </tr>
+    <tr key={category._id} ref={containerRef}>
+      <td onClick={() => openCategory(category.name)} className={styles.td}>
+        {category.name}
+      </td>
+      <td className={styles.td}>{category.products}</td>
+      <td className={styles.td}>
+        <p
+          className={
+            category.status === "Active"
+              ? styles.active
+              : "" || category.status === "Inactive"
+              ? styles.Inactive
+              : ""
+          }
+        >
+          {category.status}
+        </p>
+      </td>
+      <td className={styles.td}>
+        <DropdownButton
+          id={category._id}
+          isOpen={isDropdownOpen}
+          toggleDropdown={toggleDropdown}
+          deleteFromStore={deleteCategory}
+          deleteStatus={deleteStatus}
+          deletingId={deletingId}
+        />
+      </td>
+    </tr>
   );
 }

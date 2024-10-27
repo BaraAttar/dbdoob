@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./ProductRow.module.css";
 import DropdownButton from "../../../adminComponents/DropdownButton";
+import { useProductsStore } from "@/stores/useProducts";
 
 export default function ProductRow({ product }) {
+  const {deleteProduct , deletingId , deleteStatus} = useProductsStore();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -36,6 +38,9 @@ export default function ProductRow({ product }) {
           id={product._id}
           isOpen={isDropdownOpen}
           toggleDropdown={toggleDropdown}
+          deleteFromStore={deleteProduct}
+          deleteStatus={deleteStatus}
+          deletingId={deletingId}
         />
       </td>
     </tr>

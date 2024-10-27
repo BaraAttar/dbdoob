@@ -3,16 +3,25 @@ import { useParams } from "next/navigation";
 import styles from "./page.module.css";
 import Pagination from "@/app/components/Pagination";
 import SortCard from "../components/SortCard";
-
-// Icon
 import { useEffect, useMemo, useState } from "react";
-import { useProductsStore } from "@/stores/useProducts";
 import ProductsList from "@/app/admin/dashboard/products/components/ProductsList";
+
+import { Toaster, toast } from "sonner";
+
+// stores
+import { useProductsStore } from "@/stores/useProducts";
 
 export default function page() {
   const params = useParams();
   const category = params.productsCategory;
-  const { products, status, error , fetchProducts } = useProductsStore();
+  const {
+    products,
+    status,
+    error,
+    fetchProducts,
+    response,
+    cleaner
+  } = useProductsStore();
 
   const [pageNumber, setPageNumber] = useState(1); // current Page
 
@@ -33,8 +42,22 @@ export default function page() {
     setPageNumber(newPage);
   };
 
+  // Toaster
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      cleaner();
+    }
+    if (response) {
+      toast.success(response);
+      fetchProducts({ category, page: pageNumber })
+      cleaner();
+    }
+  }, [error, response]);
+
   return (
     <div className={styles.productCardsContainer}>
+      <Toaster position="top-center" />
       <SortCard />
       <div className={styles.cardBody}>
         <div className={styles.tableContainer}>
@@ -50,7 +73,10 @@ export default function page() {
                 <th className={styles.th}>Action</th>
               </tr>
             </thead>
-            <ProductsList productsList={productsList} status={status} error={error} />
+            <ProductsList
+              productsList={productsList}
+              status={status}
+            />
           </table>
         </div>
         {pagination && (

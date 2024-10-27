@@ -28,7 +28,6 @@ export default function Loading() {
         <td className={styles.td}></td>
       </tr>
       
-     
     </>
   );
   }

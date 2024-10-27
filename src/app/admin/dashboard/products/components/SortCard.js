@@ -1,23 +1,55 @@
+"use client";
+import { useEffect, useState } from "react";
 import SortInput from "../../../adminComponents/SortInput";
 import styles from "./SortCard.module.css";
+import { useCategoriesStore } from "@/stores/useCategoriesStore";
 
 const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
 
 export default function SortCard() {
-  const handleOptionSelect = (option) => {
-    console.log(`Selected type: ${option.type} / option: ${option.option}`);
-  };
+  const { categories, fetchCategories } = useCategoriesStore();
+
+  const [searchQuery, setSearchQuery] = useState({
+    category: null,
+  });
+
+  const [categoriesOptions, setCategoriesOptions] = useState([]);
+
+  useEffect(() => {
+    if (!categories) {
+      fetchCategories();
+    } else {
+      const newOptions = categories.map((element) => element.name);
+      setCategoriesOptions(newOptions);
+    }
+  }, [categories, fetchCategories]);
+
+  function handleOptionSelect({ type, option }) {
+    if (type === "Catrgory") {
+      
+      setSearchQuery((prevQuery) => ({
+        ...prevQuery,
+        category: option,
+      }));
+    }
+  }
+
+  function search() {
+    console.log(searchQuery);
+  }
 
   return (
     <div className={styles.sortCadr}>
       {/* <h1>Search</h1> */}
       <div className={styles.sortInputs}>
         <div>
-          <p>العميل</p>
+          <p>Catrgory</p>
           <SortInput
-            type={"custumer"}
-            options={options}
-            onOptionSelect={handleOptionSelect}
+            type={"Catrgory"}
+            options={categoriesOptions}
+            onOptionSelect={(option) =>
+              handleOptionSelect({ type: "Catrgory", option })
+            }
           />
         </div>
         <div>
@@ -25,7 +57,9 @@ export default function SortCard() {
           <SortInput
             type={"product"}
             options={options}
-            onOptionSelect={handleOptionSelect}
+            onOptionSelect={(option) =>
+              handleOptionSelect({ type: "product", option })
+            }
           />
         </div>
         <div>
@@ -33,15 +67,21 @@ export default function SortCard() {
           <SortInput
             type={"orderStatus"}
             options={options}
-            onOptionSelect={handleOptionSelect}
+            onOptionSelect={(option) =>
+              handleOptionSelect({ type: "orderStatus", option })
+            }
           />
         </div>
         <div className={styles.buttons}>
-          <button type="submit" className={styles.searchButton}>
-            بحث
+          <button
+            onClick={search}
+            type="submit"
+            className={styles.searchButton}
+          >
+            Search
           </button>
           <button type="submit" className={styles.clearButton}>
-            تصفية 
+            Clear
           </button>
         </div>
       </div>

@@ -3,7 +3,7 @@ import CategoryRow from "./CategoryRow";
 import { Suspense } from "react";
 import Loading from "../dashboard/categories/Loading";
 
-export default function CategoriesList({ categoriesList, openEdit, error }) {
+export default function CategoriesList({ categoriesList }) {
   return (
     <Suspense fallback={<Loading />}>
       <div className={styles.tableContainer}>
@@ -17,14 +17,6 @@ export default function CategoriesList({ categoriesList, openEdit, error }) {
             </tr>
           </thead>
           <tbody>
-            {error && (
-              <tr>
-                <td colSpan="4" className={styles.error}>
-                  {error}
-                </td>
-              </tr>
-            )}
-
             {categoriesList ? (
               categoriesList.length > 0 ? (
                 categoriesList.map((category) => (
