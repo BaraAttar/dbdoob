@@ -1,0 +1,117 @@
+.tableـrow {
+  max-height: 70px;
+}
+
+.tableـcell {
+  max-height: 70px;
+  background-color: var(--card-color);
+  padding: 10px;
+}
+
+.tableـcell:first-child > img {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.tableـcell:first-child {
+  border-radius: 10px 0 0 10px;
+  width: 60px;
+}
+
+.product_name {
+  font-size: 16px;
+  margin: auto;
+}
+
+.description {
+  margin: auto;
+  font-size: 14px;
+  margin-top: 10px;
+  color: var(--gray-2);
+}
+
+.category_cell {
+    max-width: 130px;
+    height: 50px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
+    align-content: center;
+}
+
+.category {
+  margin: 0;
+  font-size: 12px;
+  color: var(--gray-2);
+  font-weight: 400px;
+  background-color: var(--gray);
+  padding: 10px;
+  border-radius: 5px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.tableـcell:last-child {
+  border-radius: 0 10px 10px 0;
+  width: 40px;
+  text-align: center;
+}
+
+/*   
+  .td {
+    font-size: medium;
+    padding: 12px;
+    text-align: left;
+    border: none;
+    overflow: scroll;
+    max-width: 230px;
+    border: none; 
+    overflow: visible;
+    padding: 10px 0;
+  
+  }
+  
+  
+  .td:first-child {
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    min-width: 40px;
+  }
+  
+  .td:first-child > img {
+    padding: 2px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-top: 5px;
+  }
+  
+  .td:nth-child(2) {
+    min-width: 50px;
+    font-weight: bold;
+  }
+  
+  .td:last-child {
+    width: 20px;
+    text-align: center;
+  }
+  
+  .td > p {
+    margin: 0;
+  }
+   */
+
+.noProductsMessage {
+  text-align: center;
+  color: #999;
+  font-size: 1.2rem;
+  padding: 20px;
+}

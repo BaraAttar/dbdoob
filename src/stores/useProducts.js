@@ -2,36 +2,66 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import { create } from "zustand";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_KEY;
+const token = getCookie("token");
+
+
 export const useProductsStore = create((set) => ({
   products: null,
-  status: "idle", // 'idle', 'pending', 'fulfilled', 'rejected'
+  fetchStatus: "idle", // 'idle', 'pending', 'fulfilled', 'rejected'
+  addStatus: "idle",
   deleteStatus: "idle",
   deletingId: null,
   response: null,
   error: null,
 
-  fetchProducts: async ({ category, page }) => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_KEY;
-    set({ status: "pending" });
+  fetchProducts: async ({ category, page , sort }) => {
+    set({ fetchStatus: "pending" });
 
+    console.log(category, page , sort)
     try {
       const response = await axios.get(`${apiUrl}/products`, {
-        params: { category, page },
+        params: { category, page , sort },
       });
 
       set({
         products: response.data,
-        status: "fulfilled",
+        fetchStatus: "fulfilled",
         error: null,
       });
 
       // console.log(response.data);
     } catch (error) {
       set({
-        status: "rejected",
+        fetchStatus: "rejected",
         error: error.message,
       });
       console.log(error);
+    }
+  },
+
+  addProduct: async (data) => {
+    set({ addStatus: "pending", error: null });
+
+    try {
+      const response = await axios.post(`${apiUrl}/products`, data, {
+        headers: {
+          "x-auth-token":token ,
+        },
+      });
+
+      set({
+        addStatus: "fulfilled",
+        error: null,
+        response: response.data.message,
+      });
+
+    } catch (error) {
+      set({
+        addStatus: "rejected",
+        error: error.response?.data || "An error occurred",
+      });
+      console.error(error);
     }
   },
 
@@ -43,12 +73,11 @@ export const useProductsStore = create((set) => ({
       error: null,
       response: null,
     });
-    const apiUrl = process.env.NEXT_PUBLIC_API_KEY;
     const token = getCookie("token");
     try {
       await axios.delete(`${apiUrl}/products`, {
         headers: {
-          "x-auth-token": token,
+          "x-auth-token":token ,
         },
         params: {
           id,
@@ -70,7 +99,8 @@ export const useProductsStore = create((set) => ({
 
   cleaner: () => {
     set({
-      status: "idle",
+      fetchStatus: "idle",
+      addStatus: "idle",
       deleteStatus: "idle",
       deletingId: null,
       response: null,

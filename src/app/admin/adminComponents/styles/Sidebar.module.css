@@ -24,6 +24,10 @@
   margin: 0;
 }
 
+.sidebar > ul > li {
+  align-items: center;
+}
+
 .link {
   cursor: pointer;
   margin-bottom: 10px;
@@ -40,7 +44,9 @@
 
 .link > p {
   margin: 0;
+  font-weight: 100;
   transition: all 0.1s ease-in;
+  font-weight: 300;
 }
 
 .link > img {

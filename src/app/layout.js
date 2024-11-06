@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${TajawalRegular.variable} ${TajawalMedium.variable}`}>
+      {/* <body> */}
         {children}
       </body>
     </html>

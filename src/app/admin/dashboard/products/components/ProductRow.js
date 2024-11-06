@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import styles from "./ProductRow.module.css";
+import styles from "./ProductTable.module.css";
 import DropdownButton from "../../../adminComponents/DropdownButton";
 import { useProductsStore } from "@/stores/useProducts";
+import Image from "next/image";
 
 export default function ProductRow({ product }) {
-  const {deleteProduct , deletingId , deleteStatus} = useProductsStore();
+  const { deleteProduct, deletingId, deleteStatus } = useProductsStore();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -26,14 +27,29 @@ export default function ProductRow({ product }) {
   }, []);
 
   return (
-    <tr className={styles.tr} ref={containerRef}>
-      <td className={styles.td}>{product.name}</td>
-      <td className={styles.td}>{product._id}</td>
-      <td className={styles.td}>{product.category}</td>
-      <td className={styles.td}>{product.price}</td>
-      <td className={styles.td}>{product.stock}</td>
-      <td className={styles.td}>{product.status}</td>
-      <td className={styles.td}>
+    <tr className={styles.tableـrow} ref={containerRef}>
+      <td className={styles.tableـcell}>
+        <Image
+          alt="product image"
+          src={product.image}
+          width={100}
+          height={100}
+        />
+      </td>
+      <td className={styles.tableـcell}>
+        <p className={styles.product_name}>{product.name}</p>
+        <p className={styles.description}>{product.description}</p>
+      </td>
+      {/* <td className={styles.td}>{product._id}</td> */}
+      <td className={styles.tableـcell}>
+        <div className={styles.category_cell}>
+        <p className={styles.category}>{product.category}</p>
+        </div>
+      </td>
+      <td className={styles.tableـcell}>{product.price}$</td>
+      <td className={styles.tableـcell}>{product.stock}</td>
+      <td className={styles.tableـcell}>{product.status}</td>
+      <td className={styles.tableـcell}>
         <DropdownButton
           id={product._id}
           isOpen={isDropdownOpen}

@@ -1,0 +1,43 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray);
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  cursor: pointer;
+
+}
+
+.imagePreview_row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.imagePreview_row > div {
+  margin-left: 10px;
+}
+.imagePreview_row > div > p {
+    margin:  10px 0px;
+}
+.imagePreview {
+  height: 60px;
+  width: 60px;
+  margin-left: 10px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.icon {
+  margin-top: 15px;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}

@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['i.pinimg.com'],
-      },
+      domains: ['res.cloudinary.com'], 
+    },
 };
 
 export default nextConfig;

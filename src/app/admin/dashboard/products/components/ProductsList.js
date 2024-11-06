@@ -1,5 +1,5 @@
 import ProductRow from "./ProductRow";
-import styles from "./ProductsList.module.css";
+import styles from "./ProductTable.module.css";
 import Loading from "../[productsCategory]/Loading";
 
 export default function ProductsList({ productsList, status }) {

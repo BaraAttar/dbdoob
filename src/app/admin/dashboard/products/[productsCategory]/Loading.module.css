@@ -1,0 +1,45 @@
+.tableـrow {
+    max-height: 70px;
+  }
+  
+  .tableـcell {
+    height: 70px;
+    background-color: var(--card-color);
+    padding: 10px;
+  }
+
+  .tableـcell:first-child {
+    border-radius: 10px 0 0 10px;
+    width: 60px;
+  }
+
+  .tableـcell:last-child {
+    border-radius: 0 10px 10px 0;
+    width: 40px;
+    text-align: center;
+  }
+
+
+.tableـcell::before {
+  content: "";
+  color: var(--green);
+  margin: 0 auto;
+  width: 90%;
+  height: 15px;
+  border-radius: 5px;
+  display: inline-block;
+  background: linear-gradient(45deg, #474747, #afafaf);
+  background-size: 200% 100%; /* ضبط حجم الخلفية */
+  animation: gradientAnimation 2s ease infinite;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 100% 0; /* البداية من اليمين */
+      }
+      50% {
+        background-position: 0 0; /* الوصول إلى اليسار (يختفي) */
+      }
+      100% {
+        background-position: 100% 0; /* العودة إلى اليمين مجددًا */
+      }
+  }

@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import arrowIcon from "@/assets/arrowIcon.svg";
-
 import "./style/Pagination.style.css";
 import Image from "next/image";
 
-import { useProductsStore } from "@/stores/useProducts";
-
-
-export default function Pagination({pagination , onPageChange}) {
-  const { products, fetchProducts } = useProductsStore();
+export default function Pagination({pagination , onPageChange , pageNumber}) {
 
   // console.log("Pagination render")
-  const [currentPage, setCurrentPage] = useState(pagination.currentPage);
+  // const [currentPage, setCurrentPage] = useState(pagination.currentPage);
+  const [currentPage, setCurrentPage] = useState(pageNumber || 1);
   const totalPages = pagination.totalPages;
   const maxVisiblePages = 5;
 
@@ -28,7 +24,6 @@ export default function Pagination({pagination , onPageChange}) {
     if (pageNumber < 1 || pageNumber > totalPages) return;
     onPageChange(pageNumber);
     setCurrentPage(pageNumber)
-    // Logic to fetch or display data for the selected page can go here
   };
 
   const getPaginationRange = () => {

@@ -2,44 +2,63 @@
 import { useParams } from "next/navigation";
 import styles from "./page.module.css";
 import Pagination from "@/app/components/Pagination";
-import SortCard from "../components/SortCard";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ProductsList from "@/app/admin/dashboard/products/components/ProductsList";
 
+// Toaster
 import { Toaster, toast } from "sonner";
 
 // stores
 import { useProductsStore } from "@/stores/useProducts";
+import AddProduct from "../components/AddProduct";
+import SortCard from "../components/SortCard";
+import SortBy from "../components/SortBy";
 
 export default function page() {
   const params = useParams();
-  const category = params.productsCategory;
   const {
     products,
-    status,
+    addStatus,
+    fetchStatus,
     error,
     fetchProducts,
     response,
-    cleaner
+    cleaner,
   } = useProductsStore();
+  
+  const category = params.productsCategory;
+  const [pageNumber, setPageNumber] = useState(1);
+  const [sort , setSort] = useState(null)
 
-  const [pageNumber, setPageNumber] = useState(1); // current Page
+  const renderCount = useRef(0);
+  useEffect(() => {
+    renderCount.current += 1;
+    console.log(`Render count: ${renderCount.current}`);
+  }, []);
 
   useEffect(() => {
-    fetchProducts({ category, page: pageNumber });
-  }, [category, pageNumber]);
+    if (
+      !products ||
+      products.category !== category ||
+      products.page !== pageNumber
+    ) {
+      fetchProducts({ category, page: pageNumber , sort });
+    }
+  }, [category, pageNumber , sort]);
 
   const productsList = useMemo(
     () => products?.products || [],
     [products?.products]
   );
+
   const pagination = useMemo(
     () => products?.pagination || null,
     [products?.pagination]
   );
 
+  // const handlePageChange = (newPage) => setPageNumber(newPage);
   const handlePageChange = (newPage) => {
-    setPageNumber(newPage);
+    if (newPage !== pageNumber) setPageNumber(newPage);
   };
 
   // Toaster
@@ -50,22 +69,28 @@ export default function page() {
     }
     if (response) {
       toast.success(response);
-      fetchProducts({ category, page: pageNumber })
+      fetchProducts({ category, page: pageNumber , sort });
       cleaner();
     }
   }, [error, response]);
 
   return (
     <div className={styles.productCardsContainer}>
+      <h1>Products</h1>
       <Toaster position="top-center" />
-      <SortCard />
+      <div className={styles.header}>
+      {/* <SortCard /> */}
+      <AddProduct addStatus={addStatus} category={category} />
+      <SortBy category={category} page={pageNumber} setSort={setSort}/>
+      </div>
       <div className={styles.cardBody}>
         <div className={styles.tableContainer}>
           <table className={styles.table}>
             <thead className={styles.thead}>
               <tr>
                 <th className={styles.th}>Product</th>
-                <th className={styles.th}>Product ID</th>
+                <th className={styles.th}></th>
+                {/* <th className={styles.th}>Product ID</th> */}
                 <th className={styles.th}>Category</th>
                 <th className={styles.th}>Product Price</th>
                 <th className={styles.th}>Stock</th>
@@ -73,57 +98,17 @@ export default function page() {
                 <th className={styles.th}>Action</th>
               </tr>
             </thead>
-            <ProductsList
-              productsList={productsList}
-              status={status}
-            />
+            <ProductsList productsList={productsList} status={fetchStatus} />
           </table>
         </div>
         {pagination && (
-          <Pagination pagination={pagination} onPageChange={handlePageChange} />
+          <Pagination
+            pagination={pagination}
+            pageNumber={pageNumber}
+            onPageChange={handlePageChange}
+          />
         )}
       </div>
     </div>
   );
 }
-
-// export function ProductsList({ productsList, status }) {
-//   // Dropdown Button
-//   const [openDropdownId, setOpenDropdownId] = useState(null); // Track the open dropdown
-
-//   const toggleDropdown = (id) => {
-//     // Toggle dropdown or close others
-//     setOpenDropdownId((prevId) => (prevId === id ? null : id));
-//   };
-//   return (
-//     <tbody className={styles.tbody}>
-//       {status === "pending" && (
-//         <tr>
-//           <td colSpan="7">Loading...</td>
-//         </tr>
-//       )}
-//       {productsList.length === 0 && status !== "pending" && (
-//         <tr>
-//           <td colSpan="7">No products available</td>
-//         </tr>
-//       )}
-//       {productsList.map((product) => (
-//         <tr className={styles.tr} key={product._id}>
-//           <td className={styles.td}>{product.name}</td>
-//           <td className={styles.td}>{product._id}</td>
-//           <td className={styles.td}>{product.category}</td>
-//           <td className={styles.td}>{product.price}</td>
-//           <td className={styles.td}>{product.stock}</td>
-//           <td className={styles.td}>{product.status}</td>
-//           <td className={styles.td}>
-//             <DropdownButton
-//               productId={product._id}
-//               isOpen={openDropdownId === product._id}
-//               toggleDropdown={() => toggleDropdown(product._id)}
-//             />
-//           </td>
-//         </tr>
-//       ))}
-//     </tbody>
-//   );
-// }

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useCategoriesStore } from "@/stores/useCategoriesStore";
 import CategoriesList from "../../adminComponents/CategoriesList";
 
-import {Toaster , toast} from 'sonner';
+import { Toaster, toast } from "sonner";
 
 export default function Page() {
   // Fetch data
@@ -20,7 +20,7 @@ export default function Page() {
     submitNewCategory,
     error,
     cleaner,
-    response
+    response,
   } = useCategoriesStore();
 
   useEffect(() => {
@@ -47,20 +47,20 @@ export default function Page() {
   // Toaster and cleaner
   useEffect(() => {
     if (addStatus === "fulfilled" || deleteStatus === "fulfilled") {
-      toast.success(response)
+      toast.success(response);
       closeForm();
       fetchCategories();
       cleaner();
     }
     if (error) {
-      toast.error(error)
+      toast.error(error);
       cleaner();
     }
-  }, [addStatus , deleteStatus , error]);
+  }, [addStatus, deleteStatus, error]);
 
   return (
     <div className={styles.productsCategories}>
-<Toaster position="top-center"/>
+      <Toaster position="top-center" />
       <div className={styles.addIconContainer}>
         <Image
           className={styles.addIcon}
@@ -70,11 +70,11 @@ export default function Page() {
           alt="add"
           onClick={addNewCategory}
         />
-        <h1>الاقسام</h1>
+        <h1>Categories</h1>
       </div>
-      
+
       <CategoriesList categoriesList={categories} />
-      
+
       {/* TODO edit feature */}
       <CategoryForm
         type={"add new"}
